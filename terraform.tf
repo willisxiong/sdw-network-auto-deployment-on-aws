@@ -6,11 +6,10 @@ terraform {
     }
   }
 
-  backend "s3" {
-    bucket         = "cmi-sdw-tfstate"
-    key            = "state/network/terraform.tfstate"
-    region         = "ap-southeast-1"
-    dynamodb_table = "terraform-state-lockid"
-    encrypt        = true
+  cloud {
+    organization = "CMI-Product"
+    workspaces {
+      tags = ["SDW-Test-state"]
+    }
   }
 }
